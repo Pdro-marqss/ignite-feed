@@ -2,7 +2,7 @@ import styles from './Post.module.css';
 
 export function Post() {
   return (
-    <article className={styles.Post}>
+    <article className={styles.post}>
       <header>
         <div className={styles.author}>
           <img className={styles.avatar} src="https://github.com/Pdro-marqss.png" alt="Imagem de avatar do usuário" />
@@ -18,8 +18,12 @@ export function Post() {
       <div className={styles.content}>
         <p>Fala galera 👹</p>
         <p>To fazendo mais um projeto do curso da róqueti. Samalaleico my friends</p>
-        <p><a href="#">segue ai 👌 github/Pdro-marqss</a></p>
-        <p><a href="#">#React #Typescript #OuterWilds</a></p>
+        <p>Segue ai 👌&nbsp;<a href="#">github/Pdro-marqss</a></p>
+        <p>
+          <a href="#">#React</a>&nbsp;
+          <a href="#">#Typescript</a>&nbsp;
+          <a href="#">#OuterWilds</a>
+        </p>
       </div>
     </article>
   )
