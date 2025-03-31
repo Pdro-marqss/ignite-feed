@@ -1,19 +1,31 @@
 import { Avatar } from '../Avatar/Avatar';
 import { Comment } from '../Comment/Comment';
+
 import styles from './Post.module.css';
 
-export function Post() {
+import { iPost } from '../../models/interfaces/post.interface';
+
+interface iPostProps {
+  author: iPost["author"],
+  content: iPost["content"],
+  publishedAt: iPost["publishedAt"]
+}
+
+export function Post({ author, content, publishedAt }: iPostProps) {
+  console.log("author: ", author);
+  console.log("content: ", content);
+  console.log("publishedAt: ", publishedAt);
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
           <Avatar
-            src="https://github.com/Pdro-marqss.png"
+            src={author.avatarUrl}
             hasBorder={true}
           />
           <div className={styles.authorInfo}>
-            <strong>Pedro Marques</strong>
-            <span>Software Enginner</span>
+            <strong>{author.name}</strong>
+            <span>{author.role}</span>
           </div>
         </div>
 
