@@ -1,3 +1,6 @@
+import { format, formatDistanceToNow } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
+
 import { Avatar } from '../Avatar/Avatar';
 import { Comment } from '../Comment/Comment';
 
@@ -12,9 +15,13 @@ interface iPostProps {
 }
 
 export function Post({ author, content, publishedAt }: iPostProps) {
-  console.log("author: ", author);
-  console.log("content: ", content);
-  console.log("publishedAt: ", publishedAt);
+  const publishedDateFormatted: string = format(publishedAt, "d 'de' LLLL 'ás' HH:mm'h'");
+
+  const publishedDateRelativeToNow: string = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true,
+  })
+
   return (
     <article className={styles.post}>
       <header>
@@ -29,18 +36,19 @@ export function Post({ author, content, publishedAt }: iPostProps) {
           </div>
         </div>
 
-        <time title='23 de março ás 23:00h' dateTime="2025-03-23 23:00:30">Publicado há 1 dia</time>
+        <time title={publishedDateFormatted} dateTime={publishedAt.toISOString()}>
+          {publishedDateRelativeToNow}
+        </time>
       </header>
 
       <div className={styles.content}>
-        <p>Fala galera 👹</p>
-        <p>To fazendo mais um projeto do curso da róqueti. Samalaleico my friends</p>
-        <p>Segue ai 👌&nbsp;<a href="#">github/Pdro-marqss</a></p>
-        <p>
-          <a href="#">#React</a>&nbsp;
-          <a href="#">#Typescript</a>&nbsp;
-          <a href="#">#OuterWilds</a>
-        </p>
+        {content.map((item) => {
+          if (item.type === 'paragraph') {
+            return <p>{item.content}</p>
+          } else if (item.type === 'link') {
+            return <p><a href="#">{item.content}</a></p>
+          }
+        })}
       </div>
 
       <form className={styles.commentForm}>

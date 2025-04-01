@@ -20,7 +20,7 @@ const posts: iPost[] = [
       { type: 'paragraph', content: 'To fazendo mais um projeto do curso da róqueti. Samalaleico my friends' },
       { type: 'link', content: 'github/Pdro-marqss' }
     ],
-    publishedAt: new Date('2025-03-29 20:00:00'),
+    publishedAt: new Date('2025-03-31 20:00:00'),
   },
   {
     id: 2,
