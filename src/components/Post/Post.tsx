@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { format, formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
@@ -15,12 +16,22 @@ interface iPostProps {
 }
 
 export function Post({ author, content, publishedAt }: iPostProps) {
+  const [comments, setComments] = useState([1, 2, 3]);
+
   const publishedDateFormatted: string = format(publishedAt, "d 'de' LLLL 'ás' HH:mm'h'");
 
   const publishedDateRelativeToNow: string = formatDistanceToNow(publishedAt, {
     locale: ptBR,
     addSuffix: true,
-  })
+  });
+
+  function handleCreateNewComment() {
+    event!.preventDefault();
+
+    setComments([...comments, comments.length + 1]);
+
+    console.log(comments);
+  }
 
   return (
     <article className={styles.post}>
@@ -51,7 +62,7 @@ export function Post({ author, content, publishedAt }: iPostProps) {
         })}
       </div>
 
-      <form className={styles.commentForm}>
+      <form className={styles.commentForm} onSubmit={handleCreateNewComment}>
         <strong>Deixe seu feedback</strong>
 
         <textarea
@@ -64,8 +75,9 @@ export function Post({ author, content, publishedAt }: iPostProps) {
       </form>
 
       <div className={styles.commentList}>
-        <Comment />
-        <Comment />
+        {comments.map(comment => {
+          return <Comment />
+        })}
       </div>
     </article>
   )
