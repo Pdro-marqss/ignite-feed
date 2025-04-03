@@ -16,7 +16,10 @@ interface iPostProps {
 }
 
 export function Post({ author, content, publishedAt }: iPostProps) {
-  const [comments, setComments] = useState([1, 2, 3]);
+  const [comments, setComments] = useState<string[]>([
+    'Post muito bacana, hein ?!',
+  ]);
+  const [newComment, setNewComment] = useState<string>('');
 
   const publishedDateFormatted: string = format(publishedAt, "d 'de' LLLL 'ás' HH:mm'h'");
 
@@ -25,12 +28,15 @@ export function Post({ author, content, publishedAt }: iPostProps) {
     addSuffix: true,
   });
 
-  function handleCreateNewComment() {
-    event!.preventDefault();
+  function handleCreateNewComment(event: React.ChangeEvent<HTMLFormElement>) {
+    event.preventDefault();
 
-    setComments([...comments, comments.length + 1]);
+    setComments([...comments, newComment]);
+    setNewComment('');
+  }
 
-    console.log(comments);
+  function handleNewCommentChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    setNewComment(event.target.value);
   }
 
   return (
@@ -66,7 +72,10 @@ export function Post({ author, content, publishedAt }: iPostProps) {
         <strong>Deixe seu feedback</strong>
 
         <textarea
+          name='comment'
           placeholder='Deixe um comentário'
+          value={newComment}
+          onChange={handleNewCommentChange}
         />
 
         <footer>
@@ -76,7 +85,7 @@ export function Post({ author, content, publishedAt }: iPostProps) {
 
       <div className={styles.commentList}>
         {comments.map(comment => {
-          return <Comment />
+          return <Comment content={comment} />
         })}
       </div>
     </article>
