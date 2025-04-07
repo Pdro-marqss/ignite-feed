@@ -16,7 +16,8 @@ export function Comment({ content, onDeleteComment }: iCommentProps) {
   }
 
   function handleLikeComment() {
-    setLikeCount(likeCount + 1);
+    const likeCountUpdate: number = likeCount + 1;
+    setLikeCount(likeCountUpdate);
   }
 
   return (
