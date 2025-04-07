@@ -1,6 +1,7 @@
 import { ThumbsUp, Trash } from 'phosphor-react';
 import styles from './Comment.module.css';
 import { Avatar } from '../Avatar/Avatar';
+import { useState } from 'react';
 
 interface iCommentProps {
   content: string;
@@ -8,9 +9,14 @@ interface iCommentProps {
 }
 
 export function Comment({ content, onDeleteComment }: iCommentProps) {
+  const [likeCount, setLikeCount] = useState<number>(0);
 
   function handleDeleteComment() {
     onDeleteComment(content);
+  }
+
+  function handleLikeComment() {
+    setLikeCount(likeCount + 1);
   }
 
   return (
@@ -34,9 +40,9 @@ export function Comment({ content, onDeleteComment }: iCommentProps) {
         </div>
 
         <footer>
-          <button>
+          <button onClick={handleLikeComment}>
             <ThumbsUp />
-            Aplaudir <span>20</span>
+            Aplaudir <span>{likeCount}</span>
           </button>
         </footer>
       </div>
