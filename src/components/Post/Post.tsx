@@ -28,7 +28,7 @@ export function Post({ author, content, publishedAt }: iPostProps) {
     addSuffix: true,
   });
 
-  function handleCreateNewComment(event: React.ChangeEvent<HTMLFormElement>) {
+  function handleCreateNewComment(event: React.FormEvent) {
     event.preventDefault();
 
     setComments([...comments, newComment]);
@@ -40,7 +40,7 @@ export function Post({ author, content, publishedAt }: iPostProps) {
     setNewComment(event.target.value);
   }
 
-  function handleNewCommentInvalid(event: React.ChangeEvent<HTMLTextAreaElement>) {
+  function handleNewCommentInvalid(event: React.InvalidEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity('Este campo é obrigatório para postar um comentário.')
   }
 
