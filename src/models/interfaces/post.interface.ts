@@ -12,6 +12,6 @@ interface iAuthor {
 }
 
 interface iContent {
-  type: string,
+  type: 'paragraph' | 'link',
   content: string,
 }

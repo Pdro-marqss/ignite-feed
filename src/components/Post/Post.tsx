@@ -60,6 +60,7 @@ export function Post({ author, content, publishedAt }: iPostProps) {
           <Avatar
             src={author.avatarUrl}
             hasBorder={true}
+            alt="Imagem de avatar do usuário"
           />
           <div className={styles.authorInfo}>
             <strong>{author.name}</strong>

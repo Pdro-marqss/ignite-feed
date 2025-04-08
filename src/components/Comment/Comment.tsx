@@ -22,7 +22,7 @@ export function Comment({ content, onDeleteComment }: iCommentProps) {
 
   return (
     <div className={styles.comment}>
-      <Avatar src="https://github.com/guigotheworld.png" hasBorder={false} />
+      <Avatar src="https://github.com/guigotheworld.png" hasBorder={false} alt="Imagem de avatar do usuário" />
 
       <div className={styles.commentBox}>
         <div className={styles.commentContent}>
