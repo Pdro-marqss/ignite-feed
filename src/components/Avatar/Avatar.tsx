@@ -1,7 +1,6 @@
-import { ImgHTMLAttributes } from 'react';
 import styles from './Avatar.module.css';
 
-interface iAvatarProps extends ImgHTMLAttributes<HTMLImageElement> {
+interface iAvatarProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   hasBorder: boolean;
 }
 
